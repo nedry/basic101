@@ -247,6 +247,10 @@ module Basic101
          :line_number => simple(:line_number)) do
       RestoreStatement.new(line_number)
     end
+    
+    rule(:cls => simple(:_)) do
+      ClsStatement.new
+    end
 
     rule(:def => simple(:x),
          :identifier => simple(:identifier),
