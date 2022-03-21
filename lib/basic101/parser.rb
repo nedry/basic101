@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require_relative 'parser/cls_statement'
 require_relative 'parser/data_statement'
 require_relative 'parser/define_function_statement'
 require_relative 'parser/dim_statement'
