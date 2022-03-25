@@ -1,0 +1,10 @@
+             "dark"   "light"   dark, blinking  light,blinking
+             ------   -------   --------------  --------------
+black           0         8           16              24 
+blue            1         9           17              25
+green           2        10           18              26
+cyan            3        11           19              27
+red             4        12           20              28
+magenta         5        13           21              29
+brown           6        14           22              30
+white           7        15           23              31

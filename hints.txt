@@ -1,0 +1,94 @@
+Here's a lousy little guide to statement parsing in basic101.
+
+Statement parsing starts in parser/statements.rb.  Let's look at the
+goto statement:
+
+     rule(:statement) do
+       (goto_statement |
+        ...
+        let_statement)
+     end
+
+So now to parser/goto_statement.rb:
+
+     rule(:goto_statement) do
+       str('GOTO').as(:goto) >> space? >> integer
+     end
+
+This says that a GOTO statement is a string, then an optional space,
+then an integer.
+
+That just tells the parser how to parse it, but not what to do with
+it.  For what to do with it, Look at transform.rb:
+
+     rule(:goto => simple(:_), :integer => simple(:line_number)) do
+       GotoStatement.new(line_number.to_i)
+     end
+
+I'm a bit fuzzy on the details of the parslet syntax, but this turns
+the parsed "goto" statement into a GotoStatement object, passing it
+the line number.  Then in goto_statement.rb:
+
+   class GotoStatement < Statement
+
+     def initialize(target_line_number)
+       @target_line_number = target_line_number
+     end
+
+     def execute(runtime)
+       runtime.goto_line(@target_line_number)
+     end
+
+     protected
+
+     def state
+       [@target_line_number]
+     end
+
+   end
+
+The "state" method returns all of the things that make _this_ GOTO
+statement distinct from any other GOTO statement.  For a CLS statement,
+which has no arguments, it'll be an empty array.
+
+The CLS statement will want to do output.  Output is available via the
+`runtime` class that is passed to the
+execute function.
+
+I've pushed a branch called before-input-hook, for your testing, to see
+if it does what you want.  The change is not tested nor documented (yet).
+
+Do you know how to use a local download of a Ruby gem?  Clone the repo
+to your drive, then checkout that branch.  Then in your project's
+Gemfile, use this:
+
+     gem 'extracted_library', :path => '/home/mark/basic101'
+
+Then, of course run Bundle in your project.
+
+To use the hook:
+
+     before_input = proc do |runtime|
+       # do stuff here
+     end
+     program = Program.load(basic_source_path)
+     runtime = Runtime.new(
+       :program => program,
+       :before_input => before_input,
+     )
+     runtime.run
+
+before_input can be a proc, or an object that reasponds to the #call
+method (e.g.:)
+
+     class BeforeInput
+       def call(runtime)
+         # do stuff here
+       end
+     end
+
+     ...
+     runtime = Runtime.new(
+       :program => program,
+       :runtime => BeforeInput.new,
+     )

@@ -1,0 +1,4 @@
+10 DIM A(5, 20)
+15 B=5:C=1:D=2
+20 IF A(B+C *D ,B+C *D) <> 0 THEN 30
+30 PRINT "FUCK"
