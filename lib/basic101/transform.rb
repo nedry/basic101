@@ -2,6 +2,7 @@
 
 require_relative 'remark_statement'
 require_relative 'print_statement'
+require_relative 'color_statement'
 
 module Basic101
 
@@ -192,7 +193,21 @@ module Basic101
         NextStatement.new(reference)
       end
     end
+    
+  # rule(:color => simple(:_),
+   #      :references => subtree(:references)) do
+    #  Array(references || [nil]).map do |reference|
+     #   ColorStatement.new(reference)
+    #  end
+   # end
 
+    rule(:color => simple(:_),
+               :color_code => simple(:color_code)) do
+      ColorStatement.new(color_code)
+    end
+    
+    
+    
     rule(:on_goto => simple(:_),
          :expression => simple(:expression),
          :line_numbers => subtree(:line_numbers)) do

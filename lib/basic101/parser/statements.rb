@@ -13,6 +13,7 @@ module Basic101
 
     rule(:statement) do
       (goto_statement |
+      color_statement |
        remark_statement |
        print_statement |
        if_statement |

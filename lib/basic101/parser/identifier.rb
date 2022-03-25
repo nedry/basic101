@@ -55,6 +55,8 @@ module Basic101
 
     rule(:keyword) do
       str('AND') |
+        str('CLS') |
+        str('COLOR') |
         str('DATA') |
         str('DEF') |
         str('DIM') |
