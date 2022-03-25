@@ -7,8 +7,8 @@ module Basic101
   class ClsStatement < Statement
 
     def execute(runtime)
-      #@reference.assign(runtime, @expression.eval(runtime))
-      runtime.output.print "\e[2J"
+      runtime.output.c_out "\e[40m\e[8]\e[H\e[J"
+      
     end
 
   end

@@ -202,8 +202,9 @@ module Basic101
    # end
 
     rule(:color => simple(:_),
-               :color_code => simple(:color_code)) do
-      ColorStatement.new(color_code)
+               :color_code => simple(:color_code),
+	       :bg_colorcode => simple(:bg_colorcode)) do
+      ColorStatement.new(color_code,bg_colorcode)
     end
     
     

@@ -22,6 +22,10 @@ module Basic101
       write_string s, true
     end
 
+    def c_out(s)
+       @file.print s
+     end
+     
     def echo(s)
       write_string s, false
     end
