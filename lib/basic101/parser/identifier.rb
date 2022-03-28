@@ -8,6 +8,7 @@ module Basic101
       string_identifier | numeric_identifier
     end
 
+
     rule(:numeric_identifier) do
       base_identifier.as(:numeric_identifier)
     end
@@ -32,6 +33,7 @@ module Basic101
        str('CHR$') |
        str('COS') |
        str('EXP') |
+       str('INKEY$') |
        str('INT') |
        str('LEFT$') |
        str('LEN') |

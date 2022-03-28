@@ -12,6 +12,7 @@ module Basic101
         CosFunction,
         ExpFunction,
         IntFunction,
+	InkeyFunction,
         LeftFunction,
         LenFunction,
         LogFunction,

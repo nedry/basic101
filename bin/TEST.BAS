@@ -1,4 +1,8 @@
 10 COLOR 10
-20 PRINT "oohhhh... is color 10"
-30 COLOR 10,5
-40 PRINT "Ooooh... what this look like eh?"
+15 PRINT H$
+17 H$=""
+18 PRINT H$
+20 Z$ = INKEY$
+30 IF Z$ <> 0 THEN PRINT Z$
+40 REM INKEY$
+40 GOTO 20

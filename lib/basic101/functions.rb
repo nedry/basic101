@@ -3,6 +3,7 @@
 require_relative 'abs_function'
 require_relative 'asc_function'
 require_relative 'chr_function'
+require_relative 'inkey_function'
 require_relative 'int_function'
 require_relative 'left_function'
 require_relative 'len_function'

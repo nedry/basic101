@@ -100,17 +100,14 @@
 870 D2 = 2
 880 REM *** COMMAND SECTION ***
 890 PRINT: PRINT: COLOR 10: PRINT "What are your orders, "; N$;
-900 INPUT O$: COLOR 15
-905 O =  VAL(O$)
-906 PRINT O
-910 ON INT(O) GOTO 1040, 1680, 2220, 2680, 3250, 3410, 3700, 3880, 4400, 4660
-915 IF O$ = "?" THEN GOSUB 7000
+900 INPUT O: COLOR 15
+910 ON INT(O + 1) GOTO 1040, 1680, 2220, 2680, 3250, 3410, 3700, 3880, 4400, 4660
 920 PRINT "The commands are:"
-930 COLOR 11: PRINT "     #1:  Navigation", , "#6: Status/damage report"
-940 PRINT "     #2:  Sonar", , "#7: Headquarters"
-950 PRINT "     #3:  Torpedo control", , "#8: Sabotage"
-960 PRINT "     #4:  Polaris missile control", "#9: Power conversion"
-970 PRINT "     #5:  Maneuvering", , "#10: Surrender" : COLOR 15
+930 COLOR 11: PRINT "     #0: Navigation", , "#5: Status/damage report"
+940 PRINT "     #1: Sonar", , "#6: Headquarters"
+950 PRINT "     #2: Torpedo control", , "#7: Sabotage"
+960 PRINT "     #3: Polaris missile control", "#8: Power conversion"
+970 PRINT "     #4: Maneuvering", , "#9: Surrender": COLOR 15
 1030 GOTO 880
 1040 REM *** #0: NAVIGATION ***
 1050 IF D(1) >= 0 THEN 1080
@@ -531,7 +528,7 @@
 5100 PRINT "Damage critical!  We need help!"
 5110 A$ = "VRAVUKXCNVPCRHFDRSAXQURLQTRHXYACVFZYITLCBSSYYKDQIPCAEGQGPCNOTSIO"
 5120 X = INT(RND(1) * 16) + 1
-5130 PRINT "Send 'HELP' in code.  Here is the code: ";: COLOR 8, 7: PRINT MID$(A$, X, 4);: COLOR 15, 0: PRINT
+5130 PRINT "Send 'HELP' in code.  Here is the code: ";: COLOR 8 : PRINT MID$(A$, X, 4);: COLOR 15 : PRINT
 5132 REM  TIME DELAY AND THEN ERASE THE CODE
 5140 COLOR 10: INPUT "Enter code"; B$: COLOR 15
 5150 PRINT
@@ -555,7 +552,6 @@
 5330 V = D9
 5340 IF X + W > 0 AND X + W < 21 AND Y + V > 0 AND Y + V < 21 THEN 5420
 5350 FOR X0 = 19 TO 1 STEP -1
-5255 PRINT "X: "; X ;" W: "; W ; "Y: "; Y
 5360 IF A(X - W * X0, Y - V * X0) <> 0 THEN 5400
 5370 A(X - W * X0, Y - V * X0) = 3
 5380 A(X, Y) = 0
