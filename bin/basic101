@@ -7,4 +7,19 @@ end
 
 require 'basic101'
 
+
+def tcgetattr(io)
+  _TCGETA = 0x5405
+  attr = [0, 0, 0, 0].pack("SSSS")
+  io.ioctl(_TCGETA, attr)
+  attr
+end
+
+def tcsetattr(io, attr)
+  _TCSETA = 0x5406
+  io.ioctl(_TCSETA, attr)
+end
+
+
+
 Basic101::Main.new(ARGV).run

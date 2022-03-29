@@ -99,6 +99,7 @@ module Basic101
 
     def get_scalar(identifier)
       @scalars[identifier.to_s] ||= BasicInteger.new(0)
+
     end
 
     def set_scalar(identifier, value)

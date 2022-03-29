@@ -96,3 +96,20 @@ require_relative 'basic101/tan_function'
 require_relative 'basic101/transcript'
 require_relative 'basic101/transform'
 require_relative 'basic101/user_defined_function'
+
+
+
+    # c_iflag bits
+    INLCR  = "0000100".to_i
+    IGNCR  = "0000200".to_i
+    ICRNL  = "0000400".to_i
+
+    # c_oflag bits
+    OPOST  = "0000001".to_i
+
+    # c_lflag bits
+    ISIG   = "0000001".to_i
+    ICANON = "0000002".to_i
+    ECHO   = "0000010".to_i
+
+  

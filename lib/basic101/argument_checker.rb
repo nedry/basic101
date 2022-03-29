@@ -27,7 +27,7 @@ module Basic101
 
     def check_types
       @args.zip(types[0..@args.size]).each do |arg, type|
-        unless arg.is_a?(type)
+        unless arg.is_a?(type) 
           raise InvalidArgumentError,
           "Expected #{type.type_name} but got #{arg.type_name}"
         end

@@ -1,10 +1,13 @@
 # frozen_string_literal: true
 
+require 'io/wait'
+require 'io/console'
+
 module Basic101
 
   class Inkey
 
-    def initialize(output, file = $stdout)
+    def initialize(output, file = $stdin)
       @file = file
       @output = output
       @transcript = NullTranscript.new
@@ -14,12 +17,19 @@ module Basic101
       @transcript = transcript
     end
 
+
+
     def read_char
-      char = select([@file],nil,nil,0.1)
-      
-      @transcript.save_output "\n"
-      @transcript.save_input char
-      char
+      old_attr = tcgetattr($stdin)
+      input, output, control, local = old_attr.unpack("SSSS")
+      local &= ~(ECHO)
+      new_attr = [input, output, control, local].pack("SSSS")
+      tcsetattr($stdin, new_attr)
+      result = String.new
+       rd, _, _ = IO.select([$stdin])
+       result = rd[0].getc if !rd.nil?
+       tcsetattr($stdin, old_attr)
+       BasicString.new(result)
     end
 
     private
